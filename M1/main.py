@@ -253,7 +253,29 @@ def plot_k2_vs_trajectory():
     ax.legend()
     fig.tight_layout()
 
+
+def take_input():
+    print("Начальные значения: m = 1.0, v0 = 30.0, alpha = 45.0")
+    print("Хотите ввести другие значения? (y/n)")
+    answer = input()
+    if answer.upper() in ["Y", "YES"]:
+        print("Введите массу, начальную скорость и угол в float: ")
+        m = float(input())
+        v0 = float(input())
+        alpha = float(input())
+        apply_input(m, v0, alpha)
+    else:
+        return
+
+def apply_input(m, v0, alpha):
+    Params.m = m
+    Params.v0 = v0
+    Params.alpha = alpha
+
+
 def main():
+    take_input()
+
     plots = [
         plot_none(),
         plot_linear(),
@@ -266,6 +288,7 @@ def main():
     for fig in plots:
         plt.show(block=True)
         plt.close(fig)
+
 
 if __name__ == "__main__":
     main()
